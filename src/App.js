@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Button } from "semantic-ui-react";
 import "./App.css";
 // En React tenemos 2 tipos de componentes:
@@ -10,88 +10,69 @@ import "./App.css";
 import Header from "./Components/Header/Header";
 import CardExampleGroups from "./Components/Cards/Cards";
 
-class App extends React.Component {
-  constructor() {
-    super();
+//Hooks: estado dentro de un componente funcion
 
-    this.state = {
-      counter: 0,
-    };
-  }
+const App = () => {
+  const [counter, setCounter] = React.useState(0);
 
-  handleCounterUp = () => {
-    this.setState({ counter: this.state.counter + 1 });
+  const handleIncrement = () => {
+    setCounter(counter + 1);
   };
 
-  handleCounterDown = () => {
-    this.setState({ counter: this.state.counter - 1 });
+  const handleDecrement = () => {
+    setCounter(counter - 1);
   };
 
-  render() {
-    return (
-      <div className="App">
-        <h1>Bienvenidos</h1>
-        <Header
-          title="Tu tienda beauty virtual"
-          subtitle="Aqui podras adquirir tus productos favoritos"
+  return (
+    <div className="App">
+      <h1>Bienvenidos</h1>
+      <Header
+        title="Tu tienda beauty virtual"
+        subtitle="Aqui podras adquirir tus productos favoritos"
+      />
+      <p>{counter}</p>
+      <button onClick={handleIncrement}>Agregar producto</button>
+      <button onClick={handleDecrement}>Eliminar producto</button>
+
+      <div>
+        <CardExampleGroups
+          className="cards"
+          name="Producto 1"
+          img="Imagen del producto"
+          price="Precio$"
+          description="Descripcion del producto"
         />
-        <div>
-          <h1>CARRITO COUNTER</h1>
-          <h2 style={{ textAlign: "center" }}>
-            Counter: {this.state.counter}{" "}
-          </h2>
-          <div
-            style={{ display: "flex", justifyContent: "center", margin: 10 }}
-          >
-            <Button primary onClick={this.handleCounterUp}>
-              +
-            </Button>
-            <Button secondary onClick={this.handleCounterDown}>
-              -
-            </Button>
-          </div>
-
-          <div>
-            <CardExampleGroups
-              className="cards"
-              name="Producto 1"
-              img="Imagen del producto"
-              price="Precio$"
-              description="Descripcion del producto"
-            />
-            <CardExampleGroups
-              className="cards"
-              name="Producto 2"
-              img="Imagen del producto"
-              price="Precio$"
-              description="Descripcion del producto"
-            />
-            <CardExampleGroups
-              className="cards"
-              name="Producto 3"
-              img="Imagen del producto"
-              price="Precio$"
-              description="Descripcion del producto"
-            />
-            <CardExampleGroups
-              className="cards"
-              name="Producto 4"
-              img="Imagen del producto"
-              price="Precio$"
-              description="Descripcion del producto"
-            />
-            <CardExampleGroups
-              className="cards"
-              name="Producto 5"
-              img="Imagen del producto"
-              price="Precio$"
-              description="Descripcion del producto"
-            />
-          </div>
-        </div>
+        <CardExampleGroups
+          className="cards"
+          name="Producto 2"
+          img="Imagen del producto"
+          price="Precio$"
+          description="Descripcion del producto"
+        />
+        <CardExampleGroups
+          className="cards"
+          name="Producto 3"
+          img="Imagen del producto"
+          price="Precio$"
+          description="Descripcion del producto"
+        />
+        <CardExampleGroups
+          className="cards"
+          name="Producto 4"
+          img="Imagen del producto"
+          price="Precio$"
+          description="Descripcion del producto"
+        />
+        <CardExampleGroups
+          className="cards"
+          name="Producto 5"
+          img="Imagen del producto"
+          price="Precio$"
+          description="Descripcion del producto"
+        />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default App;
